@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CharactersTableViewCell" rowHeight="334" id="ncl-Wr-zJK" customClass="CharactersTableViewCell" customModule="MarvelCharacterListSample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="501" height="334"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ncl-Wr-zJK" id="1Tb-gI-Dj9">
+                <rect key="frame" x="0.0" y="0.0" width="501" height="334"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-NN-wPb">
+                        <rect key="frame" x="25" y="25" width="451" height="250"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="250" id="JgR-7C-ytX"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdP-Nk-Tep">
+                        <rect key="frame" x="25" y="290" width="451" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="cdP-Nk-Tep" secondAttribute="bottom" constant="15" id="7rg-vJ-w2j"/>
+                    <constraint firstItem="HVF-NN-wPb" firstAttribute="leading" secondItem="1Tb-gI-Dj9" secondAttribute="leading" constant="25" id="N2F-lz-qCR"/>
+                    <constraint firstItem="HVF-NN-wPb" firstAttribute="top" secondItem="1Tb-gI-Dj9" secondAttribute="top" constant="25" id="Se8-Sw-iPG"/>
+                    <constraint firstItem="cdP-Nk-Tep" firstAttribute="top" secondItem="HVF-NN-wPb" secondAttribute="bottom" constant="15" id="U8X-T9-Iwc"/>
+                    <constraint firstItem="cdP-Nk-Tep" firstAttribute="trailing" secondItem="HVF-NN-wPb" secondAttribute="trailing" id="fFG-Ey-eMP"/>
+                    <constraint firstItem="HVF-NN-wPb" firstAttribute="centerX" secondItem="1Tb-gI-Dj9" secondAttribute="centerX" id="iOd-qf-98h"/>
+                    <constraint firstItem="cdP-Nk-Tep" firstAttribute="leading" secondItem="HVF-NN-wPb" secondAttribute="leading" id="r7S-J4-jef"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="imageCharacter" destination="HVF-NN-wPb" id="qSL-eC-vE9"/>
+                <outlet property="titleLabel" destination="cdP-Nk-Tep" id="yfk-MS-mzh"/>
+            </connections>
+            <point key="canvasLocation" x="-225.36231884057972" y="-76.339285714285708"/>
+        </tableViewCell>
+    </objects>
+</document>
