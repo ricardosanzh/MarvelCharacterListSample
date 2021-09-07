@@ -15,56 +15,93 @@ import Foundation
 typealias MarvelCharactersListsInteractable = MarvelCharactersListsBusinessLogic & MarvelCharactersListsDataStore
 
 protocol MarvelCharactersListsBusinessLogic {
-  func doRequest(_ request: MarvelCharactersListsModel.Request)
+    func doRequest(_ request: MarvelCharactersListsModel.Request)
 }
 
 protocol MarvelCharactersListsDataStore {
-  var dataSource: MarvelCharactersListsModel.DataSource { get }
+    var dataSource: MarvelCharactersListsModel.DataSource { get }
 }
 
 final class MarvelCharactersListsInteractor: MarvelCharactersListsDataStore {
-  
-  var dataSource: MarvelCharactersListsModel.DataSource
-  
-  private var factory: MarvelCharactersListsInteractorFactorable.InteractableFactory
-  private var presenter: MarvelCharactersListsPresentationLogic
-  
-  init(factory: MarvelCharactersListsInteractorFactorable.InteractableFactory, viewController: MarvelCharactersListsDisplayLogic?, dataSource: MarvelCharactersListsModel.DataSource) {
-    self.factory = factory
-    self.dataSource = dataSource
-    self.presenter = factory.makePresenter(viewController: viewController)
-  }
+    
+    var dataSource: MarvelCharactersListsModel.DataSource
+    
+    private var factory: MarvelCharactersListsInteractorFactorable.InteractableFactory
+    private var presenter: MarvelCharactersListsPresentationLogic
+    
+    
+    var characterList: [APICharacterResult] = []
+    var prevImportList: [APICharacterResult] = []
+    var totalElements: Int = 0
+    let limit:Int = 10
+    var offset:Int = 0
+    
+    init(factory: MarvelCharactersListsInteractorFactorable.InteractableFactory, viewController: MarvelCharactersListsDisplayLogic?, dataSource: MarvelCharactersListsModel.DataSource) {
+        self.factory = factory
+        self.dataSource = dataSource
+        self.presenter = factory.makePresenter(viewController: viewController)
+    }
 }
 
 
 // MARK: - MarvelCharactersListsBusinessLogic
 extension MarvelCharactersListsInteractor: MarvelCharactersListsBusinessLogic {
-  
-  func doRequest(_ request: MarvelCharactersListsModel.Request) {
-    DispatchQueue.global(qos: .userInitiated).async {
-
-      switch request {
-
-      case .doSomething(let item):
-        self.doSomething(item)
-      }
+    
+    func doRequest(_ request: MarvelCharactersListsModel.Request) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            switch request {
+            case .extractCharactersList:
+                self.getCharactersList()
+            case .doSomething(let item):
+                self.doSomething(item)
+            }
+        }
     }
-  }
     
 }
 
 
 // MARK: - Private Zone
 private extension MarvelCharactersListsInteractor {
-  
-  func doSomething(_ item: Int) {
     
-    //construct the Service right before using it
-    //let serviceX = factory.makeXService()
+    func doSomething(_ item: Int) {
+        
+        //construct the Service right before using it
+        //let serviceX = factory.makeXService()
+        
+        // get new data async or sync
+        //let newData = serviceX.getNewData()
+        
+        presenter.presentResponse(.doSomething(newItem: item + 1, isItem: true))
+    }
     
-    // get new data async or sync
-    //let newData = serviceX.getNewData()
-    
-    presenter.presentResponse(.doSomething(newItem: item + 1, isItem: true))
-  }
+    func getCharactersList() {
+        APIClient().executeCharacters(limit: limit, offset: offset) {
+            (data: APICharacterReturnDataSet?, results: [APICharacterResult]?, error: String) in
+            if let resultsReceived = results, let dataReceived = data {
+                var newArrayRead: [APICharacterResult] = []
+                for result in resultsReceived {
+                    var duplicate = false
+                    for item in self.prevImportList {
+                        if result.id == item.id {
+                            duplicate = true
+                        }
+                    }
+                    if !duplicate {
+                        newArrayRead.append(result)
+                    }
+                }
+                if let total = dataReceived.data?.total {
+                    self.totalElements = total
+                }
+                self.characterList += newArrayRead
+                if let offset = dataReceived.data?.count {
+                    self.offset += offset
+                }
+                self.prevImportList = resultsReceived
+//                self.viewController?.sendInfoToViewController(charactersList: self.characterList)
+            }
+        }
+    }
 }

@@ -37,8 +37,8 @@ final class MarvelCharactersListsViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-//    interactor.doSomething(item: 22)
+    interactor.doRequest(.extractCharactersList)
+
   }
   
   override func loadView() {

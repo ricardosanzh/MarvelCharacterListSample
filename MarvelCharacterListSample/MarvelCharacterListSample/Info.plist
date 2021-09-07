@@ -45,6 +45,17 @@
 	<string>28722493deaf45fce98ae4d273e0c6a5</string>
 	<key>PRIVATE_KEY</key>
 	<string>c25f70e8ff483f3dc2650c668e239e9554f68cf5</string>
+	<key>urlBase</key>
+	<string>https://gateway.marvel.com</string>
+	<key>url</key>
+	<dict>
+		<key>charactersUrl</key>
+		<string>/v1/public/characters</string>
+	</dict>
+	<key>CFBundleDisplayName</key>
+	<string></string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

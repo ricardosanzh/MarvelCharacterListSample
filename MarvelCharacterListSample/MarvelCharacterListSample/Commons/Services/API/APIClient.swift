@@ -17,7 +17,7 @@ private struct AccessKeysDictionary {
     let privateKey: String?
 }
 
-class MarvelAPICalls {
+class APIClient {
     private var keys: NSDictionary?
     private var params: Parameters?
     private let ts = NSDate().timeIntervalSince1970.description

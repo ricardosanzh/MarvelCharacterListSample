@@ -17,6 +17,7 @@ enum MarvelCharactersListsModel {
     
     //Interactor
     enum Request {
+        case extractCharactersList
         case doSomething(item: Int)
     }
     
