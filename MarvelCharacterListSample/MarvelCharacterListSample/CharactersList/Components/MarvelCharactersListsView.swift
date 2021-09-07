@@ -31,10 +31,16 @@ final class MarvelCharactersListsView: BaseView {
         setupUIComponents()
     }
     
+    func updateDataSource(with dataSource: MarvelCharactersListsModel.ViewDataSource) {
+        self.dataSource = dataSource
+        self.charactersTableView.reloadData()
+    }
+    
 }
 
 private extension MarvelCharactersListsView {
     private func setupUIComponents() {
+        charactersTableView.layer.cornerRadius = 20
         charactersTableView.allowsMultipleSelection = false
         self.charactersTableView.register(UINib.init(nibName: "CharactersTableViewCell", bundle: nil), forCellReuseIdentifier: "CharactersTableViewCell")
     }
@@ -46,30 +52,30 @@ extension MarvelCharactersListsView:  UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if let data = dataSource {
+            return data.items.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   
-        let item = MarvelCharactersListsModel.CharactersCellModel(charecterName: "Personaje!!!!", characterImage: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharactersTableViewCell", for: indexPath) as? CharactersTableViewCell else {
             return UITableViewCell()
         }
         
-//        if let data = dataSource  {
-            //            cell.prepareCell(with: data.items[indexPath.row])
-        cell.prepareCell(with: item)
-//        }
+        if let data = dataSource  {
+            cell.prepareCell(with: data.items[indexPath.row])
+        }
         return cell
-    
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
         
     }
-
+    
     //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     //
     //    }

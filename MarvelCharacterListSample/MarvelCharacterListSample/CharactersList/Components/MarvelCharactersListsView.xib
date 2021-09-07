@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="334" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gcA-qU-4dd">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="5" y="44" width="404" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Tbe-8K-TJa"/>
@@ -28,12 +28,12 @@
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="w9q-de-wuN"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemRedColor"/>
             <constraints>
-                <constraint firstItem="w9q-de-wuN" firstAttribute="trailing" secondItem="gcA-qU-4dd" secondAttribute="trailing" id="7dX-I7-Ati"/>
+                <constraint firstItem="w9q-de-wuN" firstAttribute="trailing" secondItem="gcA-qU-4dd" secondAttribute="trailing" constant="5" id="7dX-I7-Ati"/>
                 <constraint firstItem="gcA-qU-4dd" firstAttribute="top" secondItem="w9q-de-wuN" secondAttribute="top" id="7f3-DK-lZ8"/>
                 <constraint firstItem="w9q-de-wuN" firstAttribute="bottom" secondItem="gcA-qU-4dd" secondAttribute="bottom" id="OG6-e4-R6h"/>
-                <constraint firstItem="gcA-qU-4dd" firstAttribute="leading" secondItem="w9q-de-wuN" secondAttribute="leading" id="xFa-yO-DyG"/>
+                <constraint firstItem="gcA-qU-4dd" firstAttribute="leading" secondItem="w9q-de-wuN" secondAttribute="leading" constant="5" id="xFa-yO-DyG"/>
             </constraints>
             <point key="canvasLocation" x="-227" y="-39"/>
         </view>
@@ -41,6 +41,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

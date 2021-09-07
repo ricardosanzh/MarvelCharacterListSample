@@ -23,15 +23,19 @@ enum MarvelCharactersListsModel {
     
     //Presenter
     enum Response {
+        case presentCharactersListResponse([APICharacterResult])
         case doSomething(newItem: Int, isItem: Bool)
     }
     
     //Info
     enum ViewModel {
         case doSomething(viewModelData: NSObject)
+        case showCharactersListInVC(viewModelData: ViewDataSource)
     }
     
     struct ViewDataSource {
+        let title: String?
+        let items: [CharactersCellModel]
     }
     
     enum Route {

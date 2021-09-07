@@ -15,19 +15,22 @@ class BaseViewController: UIViewController {
     
     var statusBarStyle: UIStatusBarStyle = .default {
         didSet {
+
             setNeedsStatusBarAppearanceUpdate()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.backgroundColor = UIColor.green
-        
+        navigationController?.navigationBar.barTintColor = UIColor.red
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white, .font: UIFont(name: "Arial-BoldMT", size: 21)!]
+
         navigationController?.setNavigationBarHidden(isNavigationBarHidden, animated: isNavigationBarAnimated)
     }
 }

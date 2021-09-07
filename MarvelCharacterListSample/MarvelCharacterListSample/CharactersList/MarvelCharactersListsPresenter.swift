@@ -13,39 +13,55 @@
 import Foundation
 
 protocol MarvelCharactersListsPresentationLogic {
-  func presentResponse(_ response: MarvelCharactersListsModel.Response)
+    func presentResponse(_ response: MarvelCharactersListsModel.Response)
 }
 
 final class MarvelCharactersListsPresenter {
-  private weak var viewController: MarvelCharactersListsDisplayLogic?
-  
-  init(viewController: MarvelCharactersListsDisplayLogic?) {
-    self.viewController = viewController
-  }
+    private weak var viewController: MarvelCharactersListsDisplayLogic?
+    
+    init(viewController: MarvelCharactersListsDisplayLogic?) {
+        self.viewController = viewController
+    }
 }
 
 
 // MARK: - MarvelCharactersListsPresentationLogic
 extension MarvelCharactersListsPresenter: MarvelCharactersListsPresentationLogic {
-  
-  func presentResponse(_ response: MarvelCharactersListsModel.Response) {
     
-    switch response {
-      
-    case .doSomething(let theNewItem, let isItem):
-      presentDoSomething(theNewItem, isItem)
+    func presentResponse(_ response: MarvelCharactersListsModel.Response) {
+        switch response {
+        case .presentCharactersListResponse(let characters):
+            presentCharactersList(characters)
+            
+        case .doSomething(let theNewItem, let isItem):
+            presentDoSomething(theNewItem, isItem)
+            
+        }
     }
-  }
 }
-
 
 // MARK: - Private Zone
 private extension MarvelCharactersListsPresenter {
-  
-  func presentDoSomething(_ newItem: Int, _ isItem: Bool) {
+    func presentCharactersList(_ characters: [APICharacterResult]) {
+        print(characters)
+        
+        let title = "Characters List"
+        var items: [MarvelCharactersListsModel.CharactersCellModel] = []
+        
+        for character in characters {
+            var imageName: String?
+            if let thumbnail = character.thumbnail, let path = thumbnail.path, let ext = thumbnail.fileExtension {
+                imageName = path + "." + ext
+            }
+            if let name = character.name {
+                let item = MarvelCharactersListsModel.CharactersCellModel(charecterName: name, characterImage: imageName)
+                items.append(item)
+            }
+        }
+        self.viewController?.displayViewModel(.showCharactersListInVC(viewModelData: MarvelCharactersListsModel.ViewDataSource(title: title, items: items)))
+    }
     
-    //prepare data for display and send it further
-    
-    viewController?.displayViewModel(.doSomething(viewModelData: NSObject()))
-  }
+    func presentDoSomething(_ newItem: Int, _ isItem: Bool) {
+        viewController?.displayViewModel(.doSomething(viewModelData: NSObject()))
+    }
 }

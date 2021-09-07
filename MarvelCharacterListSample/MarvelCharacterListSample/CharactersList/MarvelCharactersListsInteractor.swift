@@ -100,7 +100,7 @@ private extension MarvelCharactersListsInteractor {
                     self.offset += offset
                 }
                 self.prevImportList = resultsReceived
-//                self.viewController?.sendInfoToViewController(charactersList: self.characterList)
+                self.presenter.presentResponse(.presentCharactersListResponse(self.characterList))
             }
         }
     }

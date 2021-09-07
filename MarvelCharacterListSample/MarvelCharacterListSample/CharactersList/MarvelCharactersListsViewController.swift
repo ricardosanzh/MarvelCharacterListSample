@@ -13,78 +13,83 @@
 import UIKit
 
 protocol MarvelCharactersListsDisplayLogic where Self: UIViewController {
-  
-  func displayViewModel(_ viewModel: MarvelCharactersListsModel.ViewModel)
+    
+    func displayViewModel(_ viewModel: MarvelCharactersListsModel.ViewModel)
 }
 
 final class MarvelCharactersListsViewController: BaseViewController {
-  
-  typealias MarvelCharactersListsFactory = MarvelCharactersListsInteractorFactorable & MarvelCharactersListsRouterFactorable
-
-  private let mainView: MarvelCharactersListsView
-  private var interactor: MarvelCharactersListsInteractable!
-  private var router: MarvelCharactersListsRouting!
-  
-  required init(factory: MarvelCharactersListsFactory, mainView: MarvelCharactersListsView, dataSource: MarvelCharactersListsModel.DataSource) {
-    self.mainView = mainView
     
-    super.init(nibName: nil, bundle: nil)
+    typealias MarvelCharactersListsFactory = MarvelCharactersListsInteractorFactorable & MarvelCharactersListsRouterFactorable
     
-    let interactorFactory = factory as! MarvelCharactersListsInteractorFactorable.InteractableFactory
-    interactor = factory.makeInteractor(factory: interactorFactory, viewController: self, dataSource: dataSource)
-    router = factory.makeRouter(viewController: self)
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    interactor.doRequest(.extractCharactersList)
-
-  }
-  
-  override func loadView() {
-    mainView.delegate = self
-    view = mainView
+    private let mainView: MarvelCharactersListsView
+    private var interactor: MarvelCharactersListsInteractable!
+    private var router: MarvelCharactersListsRouting!
     
-  }
-
-  @available(*, unavailable)
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented, You shouldn't initialize the ViewController using Storyboards")
-  }
+    required init(factory: MarvelCharactersListsFactory, mainView: MarvelCharactersListsView, dataSource: MarvelCharactersListsModel.DataSource) {
+        self.mainView = mainView
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        let interactorFactory = factory as! MarvelCharactersListsInteractorFactorable.InteractableFactory
+        interactor = factory.makeInteractor(factory: interactorFactory, viewController: self, dataSource: dataSource)
+        router = factory.makeRouter(viewController: self)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        interactor.doRequest(.extractCharactersList)
+        
+    }
+    
+    override func loadView() {
+        mainView.delegate = self
+        view = mainView
+        
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented, You shouldn't initialize the ViewController using Storyboards")
+    }
 }
 
 // MARK: - MarvelCharactersListsDisplayLogic
 extension MarvelCharactersListsViewController: MarvelCharactersListsDisplayLogic {
+    
+    func displayViewModel(_ viewModel: MarvelCharactersListsModel.ViewModel) {
+        DispatchQueue.main.async {
+            switch viewModel {
+            case .showCharactersListInVC(let viewModelData):
+                self.navigationItem.title = viewModelData.title
+                self.mainView.updateDataSource(with: viewModelData)
 
-  func displayViewModel(_ viewModel: MarvelCharactersListsModel.ViewModel) {
-    DispatchQueue.main.async {
-      switch viewModel {
-
-      case .doSomething(let viewModel):
-        self.displayDoSomething(viewModel)
-      }
+            case .doSomething(let viewModel):
+                self.displayDoSomething(viewModel)
+            }
+        }
     }
-  }
 }
 
 
 // MARK: - MarvelCharactersListsViewDelegate
 extension MarvelCharactersListsViewController: MarvelCharactersListsViewDelegate {
-  
-  func sendDataBackToParent(_ data: Data) {
-    //usually this delegate takes care of user actions and requests through UI
     
-    //do something with the data or message sent back from mainView
-  }
+    func sendDataBackToParent(_ data: Data) {
+        //usually this delegate takes care of user actions and requests through UI
+        
+        //do something with the data or message sent back from mainView
+    }
 }
 
 
 // MARK: - Private Zone
 private extension MarvelCharactersListsViewController {
-  
-  func displayDoSomething(_ viewModel: NSObject) {
-    print("Use the mainView to present the viewModel")
-    //example of using router
-    router.routeTo(.xScene(xData: 22))
-  }
+    
+   
+    
+    func displayDoSomething(_ viewModel: NSObject) {
+        print("Use the mainView to present the viewModel")
+        //example of using router
+        router.routeTo(.xScene(xData: 22))
+    }
 }
