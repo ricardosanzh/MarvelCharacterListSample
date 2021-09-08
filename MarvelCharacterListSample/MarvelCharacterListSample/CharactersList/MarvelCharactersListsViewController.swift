@@ -62,7 +62,8 @@ extension MarvelCharactersListsViewController: MarvelCharactersListsDisplayLogic
             case .showCharactersListInVC(let viewModelData):
                 self.navigationItem.title = viewModelData.title
                 self.mainView.updateDataSource(with: viewModelData)
-                
+            case .showCharacterDetailsInVC(let id):
+                self.router.routeTo(.sendIdToDetailsScreen(id: id))
             }
         }
     }
@@ -71,16 +72,14 @@ extension MarvelCharactersListsViewController: MarvelCharactersListsDisplayLogic
 
 // MARK: - MarvelCharactersListsViewDelegate
 extension MarvelCharactersListsViewController: MarvelCharactersListsViewDelegate {
+    func characterSelected(selected: Int) {
+        interactor.doRequest(.characterSelected(selected: selected))
+    }
+    
     func nextPage(page: Int) {
         interactor.doRequest(.extractCharactersList(page: page))
     }
-    
-    
-    func sendDataBackToParent(_ data: Data) {
-        //usually this delegate takes care of user actions and requests through UI
-        
-        //do something with the data or message sent back from mainView
-    }
+
 }
 
 
@@ -88,7 +87,5 @@ extension MarvelCharactersListsViewController: MarvelCharactersListsViewDelegate
 private extension MarvelCharactersListsViewController {
     func displayDoSomething(_ viewModel: NSObject) {
         print("Use the mainView to present the viewModel")
-        //example of using router
-        router.routeTo(.xScene(xData: 22))
     }
 }

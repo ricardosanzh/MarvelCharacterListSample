@@ -33,12 +33,9 @@ extension MarvelCharactersListsRouter: MarvelCharactersListsRouting {
   func routeTo(_ route: MarvelCharactersListsModel.Route) {
     DispatchQueue.main.async {
       switch route {
-        
-      case .dismissMarvelCharactersListsScene:
-        self.dismissMarvelCharactersListsScene()
-        
-      case .xScene(let data):
-        self.showXSceneBy(data)
+      case .sendIdToDetailsScreen(let id):
+        //TODO: Mandar a escena nueva
+        break
       }
     }
   }

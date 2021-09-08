@@ -14,7 +14,7 @@ import UIKit
 
 protocol MarvelCharactersListsViewDelegate where Self: UIViewController {
     func nextPage(page:Int)
-    
+    func characterSelected(selected: Int)
 }
 
 final class MarvelCharactersListsView: BaseView {
@@ -88,7 +88,8 @@ extension MarvelCharactersListsView:  UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
-        
+        delegate?.characterSelected(selected: indexPath.row)
+
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

@@ -18,16 +18,20 @@ enum MarvelCharactersListsModel {
     //Interactor
     enum Request {
         case extractCharactersList(page: Int)
+        case characterSelected(selected: Int)
     }
     
     //Presenter
     enum Response {
         case presentCharactersListResponse([APICharacterResult])
+        case presentCharacterDetails(id: Int)
+
     }
     
     //Info
     enum ViewModel {
         case showCharactersListInVC(viewModelData: ViewDataSource)
+        case showCharacterDetailsInVC(id: Int)
     }
     
     struct ViewDataSource {
@@ -36,8 +40,7 @@ enum MarvelCharactersListsModel {
     }
     
     enum Route {
-        case dismissMarvelCharactersListsScene
-        case xScene(xData: Int)
+        case sendIdToDetailsScreen(id: Int)
     }
     
     struct DataSource {

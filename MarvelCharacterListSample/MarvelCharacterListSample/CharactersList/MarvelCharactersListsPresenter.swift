@@ -32,6 +32,8 @@ extension MarvelCharactersListsPresenter: MarvelCharactersListsPresentationLogic
         switch response {
         case .presentCharactersListResponse(let characters):
             presentCharactersList(characters)
+        case .presentCharacterDetails(let characterId):
+            self.viewController?.displayViewModel(.showCharacterDetailsInVC(id: characterId))
         }
     }
 }

@@ -45,7 +45,10 @@ extension MarvelCharactersListsInteractor: MarvelCharactersListsBusinessLogic {
             switch request {
             case .extractCharactersList(let page):
                 self.getCharactersList(page: page)
-                
+            case .characterSelected(let selectedCharacterIndex):
+                if let id = self.dataSource.charactersList[selectedCharacterIndex].id {
+                  self.presenter.presentResponse(.presentCharacterDetails(id: id))
+                }
             }
         }
     }
