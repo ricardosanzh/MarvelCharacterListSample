@@ -13,6 +13,7 @@
 import UIKit
 
 protocol MarvelCharactersListsViewDelegate where Self: UIViewController {
+    func nextPage(page:Int)
     
 }
 
@@ -20,6 +21,10 @@ final class MarvelCharactersListsView: BaseView {
     weak var delegate: MarvelCharactersListsViewDelegate?
     private var dataSource: MarvelCharactersListsModel.ViewDataSource?
     @IBOutlet weak var charactersTableView: UITableView!
+    
+    var page = 0
+    let minReloadableItems: Int = 2
+    var reloadList: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,6 +39,16 @@ final class MarvelCharactersListsView: BaseView {
     func updateDataSource(with dataSource: MarvelCharactersListsModel.ViewDataSource) {
         self.dataSource = dataSource
         self.charactersTableView.reloadData()
+        self.reloadList = false
+        
+    }
+    
+    func reloadUIComponents() {
+        self.charactersTableView.tableFooterView = UIView()
+        self.charactersTableView.reloadData()
+    }
+    func retryRequest() {
+        delegate?.nextPage(page: page)
     }
     
 }
@@ -76,8 +91,18 @@ extension MarvelCharactersListsView:  UITableViewDataSource, UITableViewDelegate
         
     }
     
-    //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    //
-    //    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if tableView == charactersTableView {
+            if let data = dataSource  {
+                if !data.items.isEmpty {
+                    if !self.reloadList &&  data.items.count - (indexPath as NSIndexPath).row < minReloadableItems {
+                        self.reloadList = true
+                        page += 1
+                        delegate?.nextPage(page: page)
+                    }
+                }
+            }
+        }
+    }
     
 }

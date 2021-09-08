@@ -45,7 +45,9 @@ class APIClient {
     /// Read API characters with its own information.
     ///
     /// - Returns: JSON required for filling this section of the app.
-    internal func executeCharacters(limit:Int, offset:Int, completion:  @escaping (_ dataSet: APICharacterReturnDataSet?, _ results: [APICharacterResult]?, _ errorString:String) -> Void) {
+    internal func executeCharacters(page: Int, completion:  @escaping (_ dataSet: APICharacterReturnDataSet?, _ results: [APICharacterResult]?, _ errorString:String) -> Void) {
+        let limit = 10
+        let offset = limit * page
         let charactersMarvelURL = UrlManager.shared.getUrlByType(.characters)
         if let dictionary = self.getKeys() {
             if let privKey = dictionary.privateKey, let pubKey = dictionary.publicKey {

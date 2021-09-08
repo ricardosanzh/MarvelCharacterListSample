@@ -17,19 +17,16 @@ enum MarvelCharactersListsModel {
     
     //Interactor
     enum Request {
-        case extractCharactersList
-        case doSomething(item: Int)
+        case extractCharactersList(page: Int)
     }
     
     //Presenter
     enum Response {
         case presentCharactersListResponse([APICharacterResult])
-        case doSomething(newItem: Int, isItem: Bool)
     }
     
     //Info
     enum ViewModel {
-        case doSomething(viewModelData: NSObject)
         case showCharactersListInVC(viewModelData: ViewDataSource)
     }
     
@@ -44,7 +41,7 @@ enum MarvelCharactersListsModel {
     }
     
     struct DataSource {
-//      var characterList: [ResultList] = []
+      var charactersList: [APICharacterResult] = []
     }
     
     struct CharactersCellModel {

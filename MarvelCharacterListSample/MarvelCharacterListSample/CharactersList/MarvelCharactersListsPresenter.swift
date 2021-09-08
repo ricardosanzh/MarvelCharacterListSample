@@ -32,10 +32,6 @@ extension MarvelCharactersListsPresenter: MarvelCharactersListsPresentationLogic
         switch response {
         case .presentCharactersListResponse(let characters):
             presentCharactersList(characters)
-            
-        case .doSomething(let theNewItem, let isItem):
-            presentDoSomething(theNewItem, isItem)
-            
         }
     }
 }
@@ -59,9 +55,5 @@ private extension MarvelCharactersListsPresenter {
             }
         }
         self.viewController?.displayViewModel(.showCharactersListInVC(viewModelData: MarvelCharactersListsModel.ViewDataSource(title: title, items: items)))
-    }
-    
-    func presentDoSomething(_ newItem: Int, _ isItem: Bool) {
-        viewController?.displayViewModel(.doSomething(viewModelData: NSObject()))
     }
 }

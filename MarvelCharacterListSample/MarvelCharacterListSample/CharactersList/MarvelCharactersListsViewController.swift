@@ -13,8 +13,8 @@
 import UIKit
 
 protocol MarvelCharactersListsDisplayLogic where Self: UIViewController {
-    
     func displayViewModel(_ viewModel: MarvelCharactersListsModel.ViewModel)
+    
 }
 
 final class MarvelCharactersListsViewController: BaseViewController {
@@ -37,7 +37,7 @@ final class MarvelCharactersListsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor.doRequest(.extractCharactersList)
+        interactor.doRequest(.extractCharactersList(page:0))
         
     }
     
@@ -62,9 +62,7 @@ extension MarvelCharactersListsViewController: MarvelCharactersListsDisplayLogic
             case .showCharactersListInVC(let viewModelData):
                 self.navigationItem.title = viewModelData.title
                 self.mainView.updateDataSource(with: viewModelData)
-
-            case .doSomething(let viewModel):
-                self.displayDoSomething(viewModel)
+                
             }
         }
     }
@@ -73,6 +71,10 @@ extension MarvelCharactersListsViewController: MarvelCharactersListsDisplayLogic
 
 // MARK: - MarvelCharactersListsViewDelegate
 extension MarvelCharactersListsViewController: MarvelCharactersListsViewDelegate {
+    func nextPage(page: Int) {
+        interactor.doRequest(.extractCharactersList(page: page))
+    }
+    
     
     func sendDataBackToParent(_ data: Data) {
         //usually this delegate takes care of user actions and requests through UI
@@ -84,9 +86,6 @@ extension MarvelCharactersListsViewController: MarvelCharactersListsViewDelegate
 
 // MARK: - Private Zone
 private extension MarvelCharactersListsViewController {
-    
-   
-    
     func displayDoSomething(_ viewModel: NSObject) {
         print("Use the mainView to present the viewModel")
         //example of using router
