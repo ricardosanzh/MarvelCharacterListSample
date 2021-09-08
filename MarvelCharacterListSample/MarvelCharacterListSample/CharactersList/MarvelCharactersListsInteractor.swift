@@ -55,8 +55,12 @@ extension MarvelCharactersListsInteractor: MarvelCharactersListsBusinessLogic {
 // MARK: - Private Zone
 private extension MarvelCharactersListsInteractor {
     func getCharactersList(page: Int) {
+        if page == 0 {
+            LoaderView.toggleUniversalLoadingView(true)
+        }
         APIClient().executeCharacters(page: page) {
             (data: APICharacterReturnDataSet?, results: [APICharacterResult]?, error: String) in
+            LoaderView.toggleUniversalLoadingView(false)
             if let resultsReceived = results {
                 self.dataSource.charactersList.append(contentsOf: resultsReceived)
                 self.presenter.presentResponse(.presentCharactersListResponse(self.dataSource.charactersList))
