@@ -33,6 +33,6 @@ enum MarvelCharacterDetailsModel {
   }
   
   struct DataSource {
-    //var test: Int
+    let characterId: Int
   }
 }
