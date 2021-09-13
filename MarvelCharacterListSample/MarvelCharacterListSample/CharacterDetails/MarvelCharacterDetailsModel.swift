@@ -38,9 +38,8 @@ enum MarvelCharacterDetailsModel {
     }
 
     struct ViewDataSource {
-        let title: String
         let imageName: String?
-        let description: String
+        let characterDescription: String
         let characterName: String
     }
 }

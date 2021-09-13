@@ -42,9 +42,6 @@ extension MarvelCharacterDetailsPresenter: MarvelCharacterDetailsPresentationLog
 private extension MarvelCharacterDetailsPresenter {
     
     func presentDetails(resultDetails: ResultList) {
-        let titleComicsTable = "Comics appearances"
-        let descriptionLabel = "Descripion"
-        let nameLabel = "Character name"
         
         var imageName: String?
         if let thumbnail = resultDetails.thumbnail, let path = thumbnail.path, let exten = thumbnail.exten {
@@ -54,10 +51,23 @@ private extension MarvelCharacterDetailsPresenter {
         var characterName: String?
         var characterDescription: String?
         if let name = resultDetails.name, let description = resultDetails.descriptionField {
-//            MarvelCharacterDetailsModel.CharacterModel(name: name, image: imageName, description: description)
             characterName = name
             characterDescription = description
+            
+            if name.isEmpty {
+                characterName = "No name available"
+            }
+            if description.isEmpty {
+                characterDescription = "No description available"
+            }
         }
-        self.viewController?.displayViewModel(.showDetailsInVC(viewModelData: MarvelCharacterDetailsModel.ViewDataSource(title: titleComicsTable, imageName: imageName, description: characterDescription ?? "", characterName: characterName ?? "")))
+        
+        let characterModel = MarvelCharacterDetailsModel.ViewDataSource(
+            imageName: imageName,
+            characterDescription: characterDescription ?? "No description available",
+            characterName: characterName ?? "No name available"
+        )
+        
+        self.viewController?.displayViewModel(.showDetailsInVC(viewModelData: characterModel))
     }
 }

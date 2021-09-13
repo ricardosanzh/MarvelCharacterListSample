@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="characterImage" destination="zFM-VL-64B" id="BfD-OG-I6b"/>
                 <outlet property="containerView" destination="cJc-Qi-enL" id="aWh-4R-Jmo"/>
+                <outlet property="descriptionLabel" destination="Hms-wg-3mL" id="ydD-mO-S4n"/>
                 <outlet property="titleLabel" destination="FQc-tS-IjC" id="54D-Pd-gC5"/>
             </connections>
         </placeholder>
@@ -31,19 +32,45 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQc-tS-IjC">
-                            <rect key="frame" x="15" y="285" width="354" height="22.5"/>
+                            <rect key="frame" x="15" y="310" width="354" height="22.5"/>
                             <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
                             <color key="textColor" red="0.92941176470588238" green="0.11372549019607843" blue="0.14117647058823529" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hms-wg-3mL">
+                            <rect key="frame" x="15" y="347.5" width="354" height="19"/>
+                            <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
+                            <color key="textColor" red="0.92941176469999998" green="0.1137254902" blue="0.14117647059999999" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F3X-hl-4oQ">
+                            <rect key="frame" x="15" y="391.5" width="354" height="308.5"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </tableView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marvelLogo" translatesAutoresizingMaskIntoConstraints="NO" id="fni-tX-NgZ">
+                            <rect key="frame" x="117" y="725" width="150" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="aVd-b6-ek2"/>
+                                <constraint firstAttribute="width" constant="150" id="rku-V2-SNS"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="FQc-tS-IjC" secondAttribute="trailing" constant="15" id="Dre-l3-mQE"/>
+                        <constraint firstItem="F3X-hl-4oQ" firstAttribute="centerX" secondItem="zFM-VL-64B" secondAttribute="centerX" id="0EJ-ZA-dob"/>
+                        <constraint firstItem="fni-tX-NgZ" firstAttribute="centerX" secondItem="zFM-VL-64B" secondAttribute="centerX" id="72p-LR-cmG"/>
+                        <constraint firstItem="Hms-wg-3mL" firstAttribute="top" secondItem="FQc-tS-IjC" secondAttribute="bottom" constant="15" id="9HE-tF-eRc"/>
                         <constraint firstItem="zFM-VL-64B" firstAttribute="centerX" secondItem="cJc-Qi-enL" secondAttribute="centerX" id="FOg-4N-M5Z"/>
+                        <constraint firstItem="Hms-wg-3mL" firstAttribute="centerX" secondItem="zFM-VL-64B" secondAttribute="centerX" id="I0D-h3-TUr"/>
                         <constraint firstItem="FQc-tS-IjC" firstAttribute="leading" secondItem="cJc-Qi-enL" secondAttribute="leading" constant="15" id="c5c-dS-8yd"/>
-                        <constraint firstItem="FQc-tS-IjC" firstAttribute="top" secondItem="zFM-VL-64B" secondAttribute="bottom" constant="15" id="ljh-Me-KZj"/>
+                        <constraint firstItem="FQc-tS-IjC" firstAttribute="top" secondItem="zFM-VL-64B" secondAttribute="bottom" constant="40" id="ljh-Me-KZj"/>
+                        <constraint firstItem="F3X-hl-4oQ" firstAttribute="leading" secondItem="cJc-Qi-enL" secondAttribute="leading" constant="15" id="mTd-ce-oXQ"/>
+                        <constraint firstItem="Hms-wg-3mL" firstAttribute="leading" secondItem="cJc-Qi-enL" secondAttribute="leading" constant="15" id="owe-3W-rOU"/>
                         <constraint firstItem="zFM-VL-64B" firstAttribute="top" secondItem="cJc-Qi-enL" secondAttribute="top" constant="20" id="qZe-Iv-Nr1"/>
+                        <constraint firstItem="fni-tX-NgZ" firstAttribute="top" secondItem="F3X-hl-4oQ" secondAttribute="bottom" constant="25" id="xue-Gw-wYq"/>
+                        <constraint firstItem="F3X-hl-4oQ" firstAttribute="top" secondItem="Hms-wg-3mL" secondAttribute="bottom" constant="25" id="y7x-yw-IDz"/>
+                        <constraint firstItem="FQc-tS-IjC" firstAttribute="centerX" secondItem="zFM-VL-64B" secondAttribute="centerX" id="yhd-rR-i5P"/>
+                        <constraint firstAttribute="bottom" secondItem="fni-tX-NgZ" secondAttribute="bottom" constant="15" id="z9v-7E-qbw"/>
                     </constraints>
                 </view>
             </subviews>
@@ -59,6 +86,7 @@
         </view>
     </objects>
     <resources>
+        <image name="marvelLogo" width="2048" height="819"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

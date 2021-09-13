@@ -56,7 +56,9 @@ extension MarvelCharacterDetailsInteractor: MarvelCharacterDetailsBusinessLogic 
 private extension MarvelCharacterDetailsInteractor {
     
     func getCharacterDetail() {
+        LoaderView.toggleUniversalLoadingView(true)
         APIClient().getCharacterDetail(id: dataSource.characterId) { (result, _) in
+            LoaderView.toggleUniversalLoadingView(false)
             self.presenter.presentResponse(.presentCharacterDetails(resultDetails: result))
         }
     }
