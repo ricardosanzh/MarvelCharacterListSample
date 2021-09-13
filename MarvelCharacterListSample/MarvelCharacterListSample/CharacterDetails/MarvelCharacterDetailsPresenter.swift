@@ -13,39 +13,51 @@
 import Foundation
 
 protocol MarvelCharacterDetailsPresentationLogic {
-  func presentResponse(_ response: MarvelCharacterDetailsModel.Response)
+    func presentResponse(_ response: MarvelCharacterDetailsModel.Response)
 }
 
 final class MarvelCharacterDetailsPresenter {
-  private weak var viewController: MarvelCharacterDetailsDisplayLogic?
-  
-  init(viewController: MarvelCharacterDetailsDisplayLogic?) {
-    self.viewController = viewController
-  }
+    private weak var viewController: MarvelCharacterDetailsDisplayLogic?
+    
+    init(viewController: MarvelCharacterDetailsDisplayLogic?) {
+        self.viewController = viewController
+    }
 }
 
 
 // MARK: - MarvelCharacterDetailsPresentationLogic
 extension MarvelCharacterDetailsPresenter: MarvelCharacterDetailsPresentationLogic {
-  
-  func presentResponse(_ response: MarvelCharacterDetailsModel.Response) {
     
-    switch response {
-      
-    case .doSomething(let theNewItem, let isItem):
-      presentDoSomething(theNewItem, isItem)
+    func presentResponse(_ response: MarvelCharacterDetailsModel.Response) {
+        
+        switch response {
+        case .presentCharacterDetails(let resultDetails):
+            self.presentDetails(resultDetails: resultDetails)
+        }
     }
-  }
 }
 
 
 // MARK: - Private Zone
 private extension MarvelCharacterDetailsPresenter {
-  
-  func presentDoSomething(_ newItem: Int, _ isItem: Bool) {
     
-    //prepare data for display and send it further
-    
-    viewController?.displayViewModel(.doSomething(viewModelData: NSObject()))
-  }
+    func presentDetails(resultDetails: ResultList) {
+        let titleComicsTable = "Comics appearances"
+        let descriptionLabel = "Descripion"
+        let nameLabel = "Character name"
+        
+        var imageName: String?
+        if let thumbnail = resultDetails.thumbnail, let path = thumbnail.path, let exten = thumbnail.exten {
+            imageName = path + "." + exten
+            
+        }
+        var characterName: String?
+        var characterDescription: String?
+        if let name = resultDetails.name, let description = resultDetails.descriptionField {
+//            MarvelCharacterDetailsModel.CharacterModel(name: name, image: imageName, description: description)
+            characterName = name
+            characterDescription = description
+        }
+        self.viewController?.displayViewModel(.showDetailsInVC(viewModelData: MarvelCharacterDetailsModel.ViewDataSource(title: titleComicsTable, imageName: imageName, description: characterDescription ?? "", characterName: characterName ?? "")))
+    }
 }

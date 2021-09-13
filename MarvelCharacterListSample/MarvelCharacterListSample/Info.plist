@@ -49,6 +49,8 @@
 	<string>https://gateway.marvel.com</string>
 	<key>url</key>
 	<dict>
+		<key>charactersDescriptionUrl</key>
+		<string>/v1/public/characters/</string>
 		<key>charactersUrl</key>
 		<string>/v1/public/characters</string>
 	</dict>

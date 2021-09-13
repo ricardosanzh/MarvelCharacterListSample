@@ -31,16 +31,11 @@ final class MarvelCharacterDetailsRouter {
 extension MarvelCharacterDetailsRouter: MarvelCharacterDetailsRouting {
   
   func routeTo(_ route: MarvelCharacterDetailsModel.Route) {
-    DispatchQueue.main.async {
-      switch route {
-        
-      case .dismissMarvelCharacterDetailsScene:
-        self.dismissMarvelCharacterDetailsScene()
-        
-      case .xScene(let data):
-        self.showXSceneBy(data)
-      }
-    }
+//    DispatchQueue.main.async {
+//      switch route {
+//
+//      }
+//    }
   }
 }
 

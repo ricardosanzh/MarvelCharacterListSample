@@ -85,7 +85,5 @@ extension MarvelCharactersListsViewController: MarvelCharactersListsViewDelegate
 
 // MARK: - Private Zone
 private extension MarvelCharactersListsViewController {
-    func displayDoSomething(_ viewModel: NSObject) {
-        print("Use the mainView to present the viewModel")
-    }
+   
 }

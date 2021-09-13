@@ -17,7 +17,7 @@ protocol MarvelCharacterDetailsDisplayLogic where Self: UIViewController {
   func displayViewModel(_ viewModel: MarvelCharacterDetailsModel.ViewModel)
 }
 
-final class MarvelCharacterDetailsViewController: UIViewController {
+final class MarvelCharacterDetailsViewController: BaseViewController {
   
   typealias MarvelCharacterDetailsFactory = MarvelCharacterDetailsInteractorFactorable & MarvelCharacterDetailsRouterFactorable
 
@@ -37,7 +37,7 @@ final class MarvelCharacterDetailsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    //interactor.doSomething(item: 22)
+    interactor.doRequest(.extractCharacterDetails)
   }
   
   override func loadView() {
@@ -57,9 +57,9 @@ extension MarvelCharacterDetailsViewController: MarvelCharacterDetailsDisplayLog
   func displayViewModel(_ viewModel: MarvelCharacterDetailsModel.ViewModel) {
     DispatchQueue.main.async {
       switch viewModel {
-
-      case .doSomething(let viewModel):
-        self.displayDoSomething(viewModel)
+      case .showDetailsInVC(let viewModel):
+        self.mainView.updateDataSource(with: viewModel)
+        
       }
     }
   }
@@ -80,9 +80,4 @@ extension MarvelCharacterDetailsViewController: MarvelCharacterDetailsViewDelega
 // MARK: - Private Zone
 private extension MarvelCharacterDetailsViewController {
   
-  func displayDoSomething(_ viewModel: NSObject) {
-    print("Use the mainView to present the viewModel")
-    //example of using router
-    router.routeTo(.xScene(xData: 22))
-  }
 }

@@ -86,4 +86,39 @@ class APIClient {
             }
         }
     }
+    
+    internal func getCharacterDetail(id: Int, completion:  @escaping (_ results: ResultList, _ errorString:String) -> Void) {
+        
+        let charactersMarvelURL = UrlManager.shared.getUrlByType(.charactersDescription) + "\(id)"
+        if let dictionary = self.getKeys() {
+            if let privKey = dictionary.privateKey, let pubKey = dictionary.publicKey {
+                params = [
+                    "apikey": pubKey,
+                    "ts": ts,
+                    "hash": (ts + privKey + pubKey).md5,
+                ]
+            }
+        }
+        
+        AF.request(charactersMarvelURL, method: .get, parameters: params).responseJSON { (response) in
+            switch response.result {
+            case .success(_):
+                if let data = response.data {
+                    let charactersList = try! JSONDecoder().decode(CharactersList.self, from: data)
+                    if let code = charactersList.code {
+                        if code == 200 {
+                            if let characterSelected = charactersList.data?.results?.first {
+                                completion(characterSelected, "No errors")
+                            }
+                        }
+                    }
+                }
+                
+            case .failure(let error):
+                print(error)
+//                completion(nil, "Service problem detected")
+
+            }
+        }
+    }
 }

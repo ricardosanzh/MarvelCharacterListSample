@@ -41,7 +41,6 @@ extension MarvelCharactersListsPresenter: MarvelCharactersListsPresentationLogic
 // MARK: - Private Zone
 private extension MarvelCharactersListsPresenter {
     func presentCharactersList(_ characters: [APICharacterResult]) {
-        print(characters)
         
         let title = "Characters List"
         var items: [MarvelCharactersListsModel.CharactersCellModel] = []

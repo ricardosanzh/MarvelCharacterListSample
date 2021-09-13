@@ -14,25 +14,33 @@
 import Foundation
 
 enum MarvelCharacterDetailsModel {
-  
-  enum Request {
-    case doSomething(item: Int)
-  }
-  
-  enum Response {
-    case doSomething(newItem: Int, isItem: Bool)
-  }
-  
-  enum ViewModel {
-    case doSomething(viewModelData: NSObject)
-  }
-  
-  enum Route {
-    case dismissMarvelCharacterDetailsScene
-    case xScene(xData: Int)
-  }
-  
-  struct DataSource {
-    let characterId: Int
-  }
+    
+    //Interactor
+    enum Request {
+        case extractCharacterDetails
+    }
+    
+    //Presenter
+    enum Response {
+        case presentCharacterDetails(resultDetails: ResultList)
+    }
+    
+    enum ViewModel {
+        case showDetailsInVC(viewModelData: ViewDataSource)
+    }
+    
+    enum Route {
+
+    }
+    
+    struct DataSource {
+        let characterId: Int
+    }
+
+    struct ViewDataSource {
+        let title: String
+        let imageName: String?
+        let description: String
+        let characterName: String
+    }
 }

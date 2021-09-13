@@ -9,10 +9,12 @@ import Foundation
 
 enum UrlType{
     case characters
+    case charactersDescription
     
     func getUrlName() -> String {
         switch self {
         case .characters: return "charactersUrl"
+        case .charactersDescription: return "charactersDescriptionUrl"
         }
     }
 }

@@ -15,56 +15,49 @@ import Foundation
 typealias MarvelCharacterDetailsInteractable = MarvelCharacterDetailsBusinessLogic & MarvelCharacterDetailsDataStore
 
 protocol MarvelCharacterDetailsBusinessLogic {
-  
-  func doRequest(_ request: MarvelCharacterDetailsModel.Request)
+    
+    func doRequest(_ request: MarvelCharacterDetailsModel.Request)
 }
 
 protocol MarvelCharacterDetailsDataStore {
-  var dataSource: MarvelCharacterDetailsModel.DataSource { get }
+    var dataSource: MarvelCharacterDetailsModel.DataSource { get }
 }
 
 final class MarvelCharacterDetailsInteractor: MarvelCharacterDetailsDataStore {
-  
-  var dataSource: MarvelCharacterDetailsModel.DataSource
-  
-  private var factory: MarvelCharacterDetailsInteractorFactorable.InteractableFactory
-  private var presenter: MarvelCharacterDetailsPresentationLogic
-  
-  init(factory: MarvelCharacterDetailsInteractorFactorable.InteractableFactory, viewController: MarvelCharacterDetailsDisplayLogic?, dataSource: MarvelCharacterDetailsModel.DataSource) {
-    self.factory = factory
-    self.dataSource = dataSource
-    self.presenter = factory.makePresenter(viewController: viewController)
-  }
+    
+    var dataSource: MarvelCharacterDetailsModel.DataSource
+    
+    private var factory: MarvelCharacterDetailsInteractorFactorable.InteractableFactory
+    private var presenter: MarvelCharacterDetailsPresentationLogic
+    
+    init(factory: MarvelCharacterDetailsInteractorFactorable.InteractableFactory, viewController: MarvelCharacterDetailsDisplayLogic?, dataSource: MarvelCharacterDetailsModel.DataSource) {
+        self.factory = factory
+        self.dataSource = dataSource
+        self.presenter = factory.makePresenter(viewController: viewController)
+    }
 }
 
 
 // MARK: - MarvelCharacterDetailsBusinessLogic
 extension MarvelCharacterDetailsInteractor: MarvelCharacterDetailsBusinessLogic {
-  
-  func doRequest(_ request: MarvelCharacterDetailsModel.Request) {
-    DispatchQueue.global(qos: .userInitiated).async {
-      
-      switch request {
-        
-      case .doSomething(let item):
-        self.doSomething(item)
-      }
+    
+    func doRequest(_ request: MarvelCharacterDetailsModel.Request) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            switch request {
+            case .extractCharacterDetails:
+                self.getCharacterDetail()
+            }
+        }
     }
-  }
 }
 
 
 // MARK: - Private Zone
 private extension MarvelCharacterDetailsInteractor {
-  
-  func doSomething(_ item: Int) {
     
-    //construct the Service right before using it
-    //let serviceX = factory.makeXService()
-    
-    // get new data async or sync
-    //let newData = serviceX.getNewData()
-    
-    presenter.presentResponse(.doSomething(newItem: item + 1, isItem: true))
-  }
+    func getCharacterDetail() {
+        APIClient().getCharacterDetail(id: dataSource.characterId) { (result, _) in
+            self.presenter.presentResponse(.presentCharacterDetails(resultDetails: result))
+        }
+    }
 }

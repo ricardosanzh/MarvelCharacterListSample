@@ -42,6 +42,7 @@ public struct APICharacterData: JSONDecodable {
 }
 
 public struct APICharacterResult: JSONDecodable {
+    
     public let id: Int?
     public let name: String?
     public let description: String?
@@ -49,6 +50,7 @@ public struct APICharacterResult: JSONDecodable {
     public let comics: [APICharacterComicsResult]?
     
     public init?(json: JSON) {
+        
         self.id = "id" <~~ json
         self.name = "name" <~~ json
         self.description = "description" <~~ json
@@ -63,6 +65,14 @@ public struct APICharacterComicsResult: JSONDecodable {
     public let collectionURI: String?
     public let items: [APICharacterComicSummary]?
     
+    enum CodingKeys: String, CodingKey {
+      case available = "available"
+      case returned = "returned"
+      case collectionURI = "collectionURI"
+      case items = "items"
+
+    }
+    
     public init?(json: JSON) {
         self.available = "available" <~~ json
         self.returned = "name" <~~ json
@@ -74,6 +84,12 @@ public struct APICharacterComicsResult: JSONDecodable {
 public struct APICharacterComicSummary: JSONDecodable {
     public let resourceURI: String?
     public let name: String?
+    
+    enum CodingKeys: String, CodingKey {
+      case resourceURI = "resourceURI"
+      case name = "name"
+
+    }
     
     public init?(json: JSON) {
         self.resourceURI = "resourceURI" <~~ json
