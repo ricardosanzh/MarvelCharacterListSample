@@ -25,6 +25,7 @@ final class MarvelCharacterDetailsView: BaseView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var characterImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var lastAppearanceLabel: UILabel!
     
     private var dataSource: MarvelCharacterDetailsModel.ViewDataSource?
     
@@ -42,11 +43,12 @@ final class MarvelCharacterDetailsView: BaseView {
       self.dataSource = dataSource
         titleLabel.text = dataSource.characterName
         descriptionLabel.text = dataSource.characterDescription
+        lastAppearanceLabel.text = dataSource.characterLastAppearance
+        
         if let path = dataSource.imageName {
           let urlImage = URL(string: path)
             characterImage.kf.setImage(with: urlImage)
         }
-        
     }
 }
 

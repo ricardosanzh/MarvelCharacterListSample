@@ -31,11 +31,8 @@ final class MarvelCharacterDetailsRouter {
 extension MarvelCharacterDetailsRouter: MarvelCharacterDetailsRouting {
   
   func routeTo(_ route: MarvelCharacterDetailsModel.Route) {
-//    DispatchQueue.main.async {
-//      switch route {
-//
-//      }
-//    }
+
+    
   }
 }
 
@@ -43,11 +40,4 @@ extension MarvelCharacterDetailsRouter: MarvelCharacterDetailsRouting {
 // MARK: - Private Zone
 private extension MarvelCharacterDetailsRouter {
   
-  func dismissMarvelCharacterDetailsScene() {
-    viewController?.dismiss(animated: true)
-  }
-  
-  func showXSceneBy(_ data: Int) {
-    print("will show the next screen")
-  }
 }

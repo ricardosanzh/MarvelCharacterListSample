@@ -41,5 +41,6 @@ enum MarvelCharacterDetailsModel {
         let imageName: String?
         let characterDescription: String
         let characterName: String
+        let characterLastAppearance: String
     }
 }

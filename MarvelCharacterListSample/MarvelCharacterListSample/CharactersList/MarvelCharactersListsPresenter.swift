@@ -42,7 +42,7 @@ extension MarvelCharactersListsPresenter: MarvelCharactersListsPresentationLogic
 private extension MarvelCharactersListsPresenter {
     func presentCharactersList(_ characters: [APICharacterResult]) {
         
-        let title = "Characters List"
+        let title = Constants.Titles.charactersListScreen
         var items: [MarvelCharactersListsModel.CharactersCellModel] = []
         
         for character in characters {

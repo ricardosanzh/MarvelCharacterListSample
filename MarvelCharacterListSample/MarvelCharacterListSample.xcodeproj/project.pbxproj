@@ -272,18 +272,10 @@
 		2D282FFC26EF647400F47DE0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				2D282FFD26EF648500F47DE0 /* Cells */,
 				2D486E9F26E8DC4F002FBFCA /* MarvelCharacterDetailsView.swift */,
 				2D28300B26EF653800F47DE0 /* MarvelCharacterDetailsView.xib */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		2D282FFD26EF648500F47DE0 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		2D486EB926E8DC6F002FBFCA /* CharacterDetails */ = {

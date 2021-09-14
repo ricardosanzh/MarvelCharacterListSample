@@ -70,9 +70,7 @@ extension MarvelCharacterDetailsViewController: MarvelCharacterDetailsDisplayLog
 extension MarvelCharacterDetailsViewController: MarvelCharacterDetailsViewDelegate {
   
   func sendDataBackToParent(_ data: Data) {
-    //usually this delegate takes care of user actions and requests through UI
-    
-    //do something with the data or message sent back from mainView
+
   }
 }
 

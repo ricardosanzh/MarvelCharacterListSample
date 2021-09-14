@@ -57,7 +57,7 @@ private extension MarvelCharactersListsView {
     private func setupUIComponents() {
         charactersTableView.layer.cornerRadius = 20
         charactersTableView.allowsMultipleSelection = false
-        self.charactersTableView.register(UINib.init(nibName: "CharactersTableViewCell", bundle: nil), forCellReuseIdentifier: "CharactersTableViewCell")
+        self.charactersTableView.register(UINib.init(nibName: Constants.Cells.charactersTableViewCell, bundle: nil), forCellReuseIdentifier: Constants.Cells.charactersTableViewCell)
     }
 }
 
@@ -75,7 +75,7 @@ extension MarvelCharactersListsView:  UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CharactersTableViewCell", for: indexPath) as? CharactersTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cells.charactersTableViewCell, for: indexPath) as? CharactersTableViewCell else {
             return UITableViewCell()
         }
         
@@ -87,7 +87,7 @@ extension MarvelCharactersListsView:  UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
+//        print("You tapped cell number \(indexPath.row).")
         delegate?.characterSelected(selected: indexPath.row)
 
     }

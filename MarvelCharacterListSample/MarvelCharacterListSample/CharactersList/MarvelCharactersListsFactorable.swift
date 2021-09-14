@@ -56,12 +56,8 @@ extension MarvelCharactersListsFactorable {
 // MARK: - Service Factorable
 protocol MarvelCharactersListsServicesFactorable {
   
-  //func makeXService() -> xService
 }
 
 extension MarvelCharactersListsServicesFactorable {
-  
-  //func makeXService() -> xService {
-  //   xService()
-  //}
+
 }

@@ -42,12 +42,12 @@ extension MarvelCharacterDetailsPresenter: MarvelCharacterDetailsPresentationLog
 private extension MarvelCharacterDetailsPresenter {
     
     func presentDetails(resultDetails: ResultList) {
-        
         var imageName: String?
         if let thumbnail = resultDetails.thumbnail, let path = thumbnail.path, let exten = thumbnail.exten {
             imageName = path + "." + exten
             
         }
+        
         var characterName: String?
         var characterDescription: String?
         if let name = resultDetails.name, let description = resultDetails.descriptionField {
@@ -55,17 +55,27 @@ private extension MarvelCharacterDetailsPresenter {
             characterDescription = description
             
             if name.isEmpty {
-                characterName = "No name available"
+                characterName = Constants.Default.noNameAvailable
             }
             if description.isEmpty {
-                characterDescription = "No description available"
+                characterDescription = Constants.Default.noDescriptionAvailable
+            }
+        }
+
+        var lastCharacterAppearance: String?
+        if let lastAppearance = resultDetails.comics?.items?.first?.name {
+            lastCharacterAppearance = lastAppearance
+            
+            if lastAppearance.isEmpty {
+                lastCharacterAppearance = Constants.Default.noComicsAvailable
             }
         }
         
         let characterModel = MarvelCharacterDetailsModel.ViewDataSource(
             imageName: imageName,
-            characterDescription: characterDescription ?? "No description available",
-            characterName: characterName ?? "No name available"
+            characterDescription: characterDescription ?? Constants.Default.noDescriptionAvailable,
+            characterName: characterName ?? Constants.Default.noNameAvailable,
+            characterLastAppearance: lastCharacterAppearance ?? Constants.Default.noComicsAvailable
         )
         
         self.viewController?.displayViewModel(.showDetailsInVC(viewModelData: characterModel))
