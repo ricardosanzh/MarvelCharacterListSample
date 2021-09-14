@@ -59,7 +59,10 @@ private extension MarvelCharacterDetailsInteractor {
         LoaderView.toggleUniversalLoadingView(true)
         APIClient().getCharacterDetail(id: dataSource.characterId) { (result, _) in
             LoaderView.toggleUniversalLoadingView(false)
-            self.presenter.presentResponse(.presentCharacterDetails(resultDetails: result))
+            if let res = result {
+                self.presenter.presentResponse(.presentCharacterDetails(resultDetails: res))
+
+            }
         }
     }
 }
