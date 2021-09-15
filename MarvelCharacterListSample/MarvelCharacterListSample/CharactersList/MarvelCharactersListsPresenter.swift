@@ -30,14 +30,14 @@ extension MarvelCharactersListsPresenter: MarvelCharactersListsPresentationLogic
 
 // MARK: - Private Zone
 private extension MarvelCharactersListsPresenter {
-    func presentCharactersList(_ characters: [APICharacterResult]) {
+    func presentCharactersList(_ characters: [ResultList]) {
         
         let title = Constants.Titles.charactersListScreen
         var items: [MarvelCharactersListsModel.CharactersCellModel] = []
         
         for character in characters {
             var imageName: String?
-            if let thumbnail = character.thumbnail, let path = thumbnail.path, let ext = thumbnail.fileExtension {
+            if let thumbnail = character.thumbnail, let path = thumbnail.path, let ext = thumbnail.exten {
                 imageName = path + "." + ext
             }
             if let name = character.name {

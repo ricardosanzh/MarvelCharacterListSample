@@ -10,7 +10,6 @@ import Alamofire
 
 import Foundation
 import Alamofire
-import Gloss
 
 private struct AccessKeysDictionary {
     let publicKey: String?
@@ -45,7 +44,7 @@ class APIClient {
     /// Read API characters with its own information.
     ///
     /// - Returns: JSON required for filling this section of the app.
-    internal func executeCharacters(page: Int, completion:  @escaping (_ dataSet: APICharacterReturnDataSet?, _ results: [APICharacterResult]?, _ errorString:String) -> Void) {
+    internal func executeCharacters(page: Int, completion:  @escaping (_ results: CharactersList?, _ errorString:String) -> Void) {
         let limit = 10
         let offset = limit * page
         let charactersMarvelURL = UrlManager.shared.getUrlByType(.characters)
@@ -59,30 +58,29 @@ class APIClient {
                     "offset" : offset,
                 ]
             } else {
-                completion(nil, [], "No correct data sent")
+                completion(nil, "No correct data sent")
             }
         }
         
         AF.request(charactersMarvelURL, method: .get, parameters: params).responseJSON { (response) in
             switch response.result {
-            case .success(_): 
-                guard let marvelReturnData = APICharacterReturnDataSet(json: response.value as! JSON) else {
-                    print("Error initializating marvel data object")
-                    completion(nil, [], "Error initializating marvel data object")
-                    return
+            case .success(_):
+                if let data = response.data {
+                    do {
+                        let charactersList = try JSONDecoder().decode(CharactersList.self, from: data)
+                        if let code = charactersList.code {
+                            if code == 200 {
+                                completion(charactersList, "No errors")
+                            }
+                        }
+                    } catch {
+                        completion(nil, "json problem detected")
+                    }
                 }
-                guard marvelReturnData.code == 200 else {
-                    completion(nil, [], "Error Return Code: \(marvelReturnData.code ?? -1 )")
-                    return
-                }
-                guard let results = marvelReturnData.data?.results else {
-                    completion(nil, [], "No data returned")
-                    return
-                }
-                completion(marvelReturnData, results, "No Errors")
+                
             case .failure(let error):
                 print(error)
-                completion(nil, [], "Service problem detected")
+                completion(nil, "Service problem detected")
             }
         }
     }
@@ -121,7 +119,7 @@ class APIClient {
             case .failure(let error):
                 print(error)
                 completion(nil, "Service problem detected")
-
+                
             }
         }
     }

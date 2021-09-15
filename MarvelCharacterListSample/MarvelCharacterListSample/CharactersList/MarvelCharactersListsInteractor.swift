@@ -37,7 +37,7 @@ extension MarvelCharactersListsInteractor: MarvelCharactersListsBusinessLogic {
                 self.getCharactersList(page: page)
             case .characterSelected(let selectedCharacterIndex):
                 if let id = self.dataSource.charactersList[selectedCharacterIndex].id {
-                  self.presenter.presentResponse(.presentCharacterDetails(id: id))
+                    self.presenter.presentResponse(.presentCharacterDetails(id: id))
                 }
             }
         }
@@ -52,11 +52,13 @@ private extension MarvelCharactersListsInteractor {
             LoaderView.toggleUniversalLoadingView(true)
         }
         APIClient().executeCharacters(page: page) {
-            (data: APICharacterReturnDataSet?, results: [APICharacterResult]?, error: String) in
+            (results: CharactersList?, error: String) in
             LoaderView.toggleUniversalLoadingView(false)
             if let resultsReceived = results {
-                self.dataSource.charactersList.append(contentsOf: resultsReceived)
-                self.presenter.presentResponse(.presentCharactersListResponse(self.dataSource.charactersList))
+                if let res = resultsReceived.data?.results {
+                    self.dataSource.charactersList.append(contentsOf: res)
+                    self.presenter.presentResponse(.presentCharactersListResponse(self.dataSource.charactersList))
+                }
             }
         }
     }

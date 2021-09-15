@@ -8,7 +8,6 @@ target 'MarvelCharacterListSample' do
   # Pods for MarvelCharacterListSample
   pod 'Alamofire', '~> 5.2'
   pod 'Kingfisher'
-  pod 'Gloss'
 
   target 'MarvelCharacterListSampleTests' do
     inherit! :search_paths

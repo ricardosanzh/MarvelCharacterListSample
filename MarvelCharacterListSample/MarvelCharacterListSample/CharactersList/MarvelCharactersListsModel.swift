@@ -12,7 +12,7 @@ enum MarvelCharactersListsModel {
     
     //Presenter
     enum Response {
-        case presentCharactersListResponse([APICharacterResult])
+        case presentCharactersListResponse([ResultList])
         case presentCharacterDetails(id: Int)
 
     }
@@ -33,7 +33,7 @@ enum MarvelCharactersListsModel {
     }
     
     struct DataSource {
-      var charactersList: [APICharacterResult] = []
+      var charactersList: [ResultList] = []
     }
     
     struct CharactersCellModel {
