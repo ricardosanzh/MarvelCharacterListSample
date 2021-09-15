@@ -23,8 +23,9 @@ private extension UIView {
   func loadViewFromNib() -> UIView {
     let bundle = Bundle(for: type(of: self))
     let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
-    let nibView = nib.instantiate(withOwner: self, options: nil).first as! UIView
-    
-    return nibView
+    if let nibView = nib.instantiate(withOwner: self, options: nil).first as? UIView {
+        return nibView
+    }
+    return UIView()
   }
 }

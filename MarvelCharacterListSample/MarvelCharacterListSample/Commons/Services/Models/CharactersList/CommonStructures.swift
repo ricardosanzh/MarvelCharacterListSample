@@ -16,7 +16,10 @@ public struct APIImageResult: JSONDecodable {
     }
     
     public var url: URL? {
-        return URL(string: self.securePath(path: self._path) + "." + self.fileExtension!)
+        if let exten = self.fileExtension {
+            return URL(string: self.securePath(path: self._path) + "." + exten)
+        }
+        return nil
     }
     
     func securePath(path:String) -> String {

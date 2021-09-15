@@ -29,8 +29,10 @@ class BaseViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = UIColor.red
         navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white, .font: UIFont(name: "Arial-BoldMT", size: 21)!]
-
+        if let font = UIFont(name: "Arial-BoldMT", size: 21) {
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white, .font: font]
+        }
+        
         navigationController?.setNavigationBarHidden(isNavigationBarHidden, animated: isNavigationBarAnimated)
     }
 }
