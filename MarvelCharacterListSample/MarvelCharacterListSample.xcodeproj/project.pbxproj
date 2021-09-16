@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		09D9E64BC317A965E0A91ED5 /* Pods_MarvelCharacterListSample_MarvelCharacterListSampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978F9F94CC1A950D02BBFC5C /* Pods_MarvelCharacterListSample_MarvelCharacterListSampleUITests.framework */; };
+		2D1315EC26F349AA0022E8E0 /* CharactersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DFF21C426E6323D001A2788 /* CharactersTableViewCell.xib */; };
+		2D1315ED26F349AB0022E8E0 /* CharactersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DFF21C426E6323D001A2788 /* CharactersTableViewCell.xib */; };
+		2D1315EE26F349AE0022E8E0 /* MarvelCharactersListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF21A826E62473001A2788 /* MarvelCharactersListsView.swift */; };
+		2D1315EF26F349AE0022E8E0 /* MarvelCharactersListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF21A826E62473001A2788 /* MarvelCharactersListsView.swift */; };
 		2D26930526E753A300673645 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D26930426E753A300673645 /* APIClient.swift */; };
 		2D26930626E753A300673645 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D26930426E753A300673645 /* APIClient.swift */; };
 		2D26930726E753A300673645 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D26930426E753A300673645 /* APIClient.swift */; };
@@ -559,6 +563,7 @@
 			files = (
 				2D28300D26EF653800F47DE0 /* MarvelCharacterDetailsView.xib in Resources */,
 				2DE00E6326E242570042A5C2 /* MarvelCharactersListsView.xib in Resources */,
+				2D1315EC26F349AA0022E8E0 /* CharactersTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +573,7 @@
 			files = (
 				2D28300E26EF653800F47DE0 /* MarvelCharacterDetailsView.xib in Resources */,
 				2DE00E6426E242570042A5C2 /* MarvelCharactersListsView.xib in Resources */,
+				2D1315ED26F349AB0022E8E0 /* CharactersTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +737,7 @@
 				2D486EB426E8DC4F002FBFCA /* MarvelCharacterDetailsModel.swift in Sources */,
 				2DE00E8226E6044A0042A5C2 /* BaseViewController.swift in Sources */,
 				2DE5D15226F33F12007C98BB /* Fonts.swift in Sources */,
+				2D1315EE26F349AE0022E8E0 /* MarvelCharactersListsView.swift in Sources */,
 				2D486EAE26E8DC4F002FBFCA /* MarvelCharacterDetailsInteractor.swift in Sources */,
 				2D282FE126EF557C00F47DE0 /* ThumbNail.swift in Sources */,
 				2DE00EA126E6120D0042A5C2 /* CharactersTableViewCell.swift in Sources */,
@@ -769,6 +776,7 @@
 				2D486EB526E8DC4F002FBFCA /* MarvelCharacterDetailsModel.swift in Sources */,
 				2DE00E8326E6044A0042A5C2 /* BaseViewController.swift in Sources */,
 				2DE5D15626F33F13007C98BB /* Fonts.swift in Sources */,
+				2D1315EF26F349AE0022E8E0 /* MarvelCharactersListsView.swift in Sources */,
 				2D486EAF26E8DC4F002FBFCA /* MarvelCharacterDetailsInteractor.swift in Sources */,
 				2D282FE226EF557C00F47DE0 /* ThumbNail.swift in Sources */,
 				2DE00EA226E6120D0042A5C2 /* CharactersTableViewCell.swift in Sources */,
