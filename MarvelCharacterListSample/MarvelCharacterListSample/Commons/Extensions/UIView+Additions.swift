@@ -7,6 +7,9 @@
 
 import UIKit
 
+/// Extension file for UIView.
+/// Used for setting up and loading nibs.
+///
 extension UIView {
   func nibSetup() -> UIView {
     backgroundColor = .clear
@@ -18,6 +21,7 @@ extension UIView {
     return view
   }
 }
+
 // MARK: - Private
 private extension UIView {
   func loadViewFromNib() -> UIView {

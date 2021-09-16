@@ -7,6 +7,8 @@
 
 import UIKit
 
+/// Base View class for common configs.
+///
 class BaseView: UIView {
   @IBOutlet weak var view: UIView!
 

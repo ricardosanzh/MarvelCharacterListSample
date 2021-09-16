@@ -33,15 +33,7 @@ extension MarvelCharactersListsRouter: MarvelCharactersListsRouting {
 
 // MARK: - Private Zone
 private extension MarvelCharactersListsRouter {
-    
-    func dismissMarvelCharactersListsScene() {
-        viewController?.dismiss(animated: true)
-    }
-    
-    func showXSceneBy(_ data: Int) {
-        print("will show the next screen")
-    }
-    
+        
     func showCharacterDetail(id: Int) {
         let viewController = MarvelCharacterDetailsViewController(factory: AppInjector.MarvelCharacterDetailsInjector(), mainView: MarvelCharacterDetailsView(), dataSource: MarvelCharacterDetailsModel.DataSource(characterId: id))
         self.viewController?.navigationController?.pushViewController(viewController, animated: true)

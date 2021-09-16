@@ -31,6 +31,8 @@ final class MarvelCharacterDetailsInteractor: MarvelCharacterDetailsDataStore {
 // MARK: - MarvelCharacterDetailsBusinessLogic
 extension MarvelCharacterDetailsInteractor: MarvelCharacterDetailsBusinessLogic {
     
+    /// Executes selected case request.
+    ///
     func doRequest(_ request: MarvelCharacterDetailsModel.Request) {
         DispatchQueue.global(qos: .userInitiated).async {
             switch request {
@@ -45,6 +47,8 @@ extension MarvelCharacterDetailsInteractor: MarvelCharacterDetailsBusinessLogic 
 // MARK: - Private Zone
 private extension MarvelCharacterDetailsInteractor {
     
+    /// Executes API call and send result to the presenter.
+    ///
     func getCharacterDetail() {
         LoaderView.toggleUniversalLoadingView(true)
         APIClient().getCharacterDetail(id: dataSource.characterId) { (result, _) in

@@ -30,6 +30,9 @@ extension MarvelCharactersListsPresenter: MarvelCharactersListsPresentationLogic
 
 // MARK: - Private Zone
 private extension MarvelCharactersListsPresenter {
+    
+    /// Handles information extracted from get service calling.
+    ///
     func presentCharactersList(_ characters: [ResultList]) {
         
         let title = Constants.Titles.charactersListScreen

@@ -62,10 +62,15 @@ extension MarvelCharactersListsViewController: MarvelCharactersListsDisplayLogic
 
 // MARK: - MarvelCharactersListsViewDelegate
 extension MarvelCharactersListsViewController: MarvelCharactersListsViewDelegate {
+    
+    /// Start request for getting selected caracter info.
+    ///
     func characterSelected(selected: Int) {
         interactor.doRequest(.characterSelected(selected: selected))
     }
     
+    /// Start service calling to get new page of caracters.
+    ///
     func nextPage(page: Int) {
         interactor.doRequest(.extractCharactersList(page: page))
     }

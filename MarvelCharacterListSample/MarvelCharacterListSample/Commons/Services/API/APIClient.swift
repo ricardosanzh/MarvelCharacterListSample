@@ -85,6 +85,9 @@ class APIClient {
         }
     }
     
+    /// Read API character detail when sending its id..
+    ///
+    /// - Returns: JSON required for filling this section of the app.
     internal func getCharacterDetail(id: Int, completion:  @escaping (_ results: ResultList?, _ errorString:String) -> Void) {
         
         let charactersMarvelURL = UrlManager.shared.getUrlByType(.charactersDescription) + "\(id)"

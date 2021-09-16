@@ -6,6 +6,9 @@
 //
 
 import UIKit
+
+/// Loader view created for using it when waiting for the services callback.
+///
 enum LoaderView {
   
   static func toggleUniversalLoadingView(_ show: Bool, loadingText : String = "", alpha: CGFloat = 1.0) {

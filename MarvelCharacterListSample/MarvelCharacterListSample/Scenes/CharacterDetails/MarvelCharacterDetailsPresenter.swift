@@ -31,6 +31,8 @@ extension MarvelCharacterDetailsPresenter: MarvelCharacterDetailsPresentationLog
 // MARK: - Private Zone
 private extension MarvelCharacterDetailsPresenter {
     
+    /// Handles information extracted from get service calling.
+    ///
     func presentDetails(resultDetails: ResultList) {
         var imageName: String?
         if let thumbnail = resultDetails.thumbnail, let path = thumbnail.path, let exten = thumbnail.exten {

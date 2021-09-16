@@ -5,6 +5,8 @@
 //  Created by r.a.sanz.hinojosas on 07/09/2021.
 //
 
+/// Constants file for centralize them in one file.
+///
 struct Constants {
     struct Cells {
         static let charactersTableViewCell = "CharactersTableViewCell"

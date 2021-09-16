@@ -30,6 +30,8 @@ final class MarvelCharactersListsInteractor: MarvelCharactersListsDataStore {
 // MARK: - MarvelCharactersListsBusinessLogic
 extension MarvelCharactersListsInteractor: MarvelCharactersListsBusinessLogic {
     
+    /// Executes selected case request.
+    ///
     func doRequest(_ request: MarvelCharactersListsModel.Request) {
         DispatchQueue.global(qos: .userInitiated).async {
             switch request {
@@ -47,6 +49,9 @@ extension MarvelCharactersListsInteractor: MarvelCharactersListsBusinessLogic {
 
 // MARK: - Private Zone
 private extension MarvelCharactersListsInteractor {
+    
+    /// Executes API call and send result to the presenter.
+    ///
     func getCharactersList(page: Int) {
         if page == 0 {
             LoaderView.toggleUniversalLoadingView(true)
