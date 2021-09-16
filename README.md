@@ -31,7 +31,7 @@ The most extended dependency manager. Will help to install pods (dependencies) a
 ### Alamofire: https://cocoapods.org/pods/Alamofire
 Http networking library for service calling. Used this one because is one of the most extended one.
 
-### Kingsfisher: https://github.com/onevcat/Kingfisher
+#### Kingsfisher: https://github.com/onevcat/Kingfisher
 Used for downloading and caching remote images caming from json service call.
 
 </br>
@@ -39,9 +39,6 @@ Used for downloading and caching remote images caming from json service call.
 
 # Unit Testing
 
-For this code test, I only include unit testing for APIManager, both from app and package. In a future app and Image extension, we can cover much more source tested.
-
-I only follow the unit testing method, not test driven using TDD (not possible BDD because I havn't had client side), but in a future project we can work with both testing methodologies.
 
 <br>
 
