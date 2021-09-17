@@ -24,21 +24,37 @@ final class MarvelCharactersListsViewControllerTests: XCTestCase {
 }
 
 
-
 // MARK: - Tests
 extension MarvelCharactersListsViewControllerTests {
     
-    func testShowDetail() {
+    func testShowCharacterDetailsInVC() {
         router.showDetailExpectation = expectation(description: "showDetailExpectation")
         let testId = 500
         viewController.displayViewModel(.showCharacterDetailsInVC(id: 500))
         wait(for: [router.showDetailExpectation], timeout: 0.1)
         XCTAssertEqual(testId, router.passedId)
+        
     }
     
     func testShowCharactersListInVC() {
-        let testViewData = MarvelCharactersListsModel.ViewDataSource(title: "Title", items: [])
+        let title: String = "Characters List"
+        let testViewData = MarvelCharactersListsModel.ViewDataSource(title: title, items: [])
         viewController.displayViewModel(.showCharactersListInVC(viewModelData: testViewData))
+        
+    }
+    
+    func testCharacterSelected() {
+        let testId = 1011334
+        viewController.characterSelected(selected: testId)
+        XCTAssertEqual(testId, interactor.passedIndex)
+
+    }
+    
+    func testNextPage() {
+        let page = 4
+        viewController.nextPage(page: page)
+        XCTAssertEqual(page, interactor.passedPage)
+
     }
 }
 

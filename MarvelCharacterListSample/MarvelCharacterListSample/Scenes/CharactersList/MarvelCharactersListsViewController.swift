@@ -15,6 +15,8 @@ final class MarvelCharactersListsViewController: BaseViewController {
     private var interactor: MarvelCharactersListsInteractable!
     private var router: MarvelCharactersListsRouting!
     
+    var titleView: String?
+    
     required init(factory: MarvelCharactersListsFactory, mainView: MarvelCharactersListsView, dataSource: MarvelCharactersListsModel.DataSource) {
         self.mainView = mainView
         
@@ -50,7 +52,8 @@ extension MarvelCharactersListsViewController: MarvelCharactersListsDisplayLogic
         DispatchQueue.main.async {
             switch viewModel {
             case .showCharactersListInVC(let viewModelData):
-                self.navigationItem.title = viewModelData.title
+                self.titleView = viewModelData.title
+                self.navigationItem.title = self.titleView
                 self.mainView.updateDataSource(with: viewModelData)
             case .showCharacterDetailsInVC(let id):
                 self.router.routeTo(.sendIdToDetailsScreen(id: id))

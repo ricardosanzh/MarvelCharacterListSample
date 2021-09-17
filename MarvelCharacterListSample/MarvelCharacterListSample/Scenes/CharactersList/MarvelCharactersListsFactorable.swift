@@ -43,9 +43,11 @@ extension MarvelCharactersListsFactorable {
 
 // MARK: - Service Factorable
 protocol MarvelCharactersListsServicesFactorable {
-  
+    func makeApiClient() -> APIClientProtocol
 }
 
 extension MarvelCharactersListsServicesFactorable {
-
+    func makeApiClient() -> APIClientProtocol {
+        return APIClient()
+    }
 }

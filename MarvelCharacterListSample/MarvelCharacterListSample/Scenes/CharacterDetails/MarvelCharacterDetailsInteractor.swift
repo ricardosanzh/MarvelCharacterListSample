@@ -51,7 +51,7 @@ private extension MarvelCharacterDetailsInteractor {
     ///
     func getCharacterDetail() {
         LoaderView.toggleUniversalLoadingView(true)
-        APIClient().getCharacterDetail(id: dataSource.characterId) { (result, _) in
+        factory.makeApiService().getCharacterDetail(id: dataSource.characterId) { (result, _) in
             LoaderView.toggleUniversalLoadingView(false)
             if let res = result {
                 self.presenter.presentResponse(.presentCharacterDetails(resultDetails: res))

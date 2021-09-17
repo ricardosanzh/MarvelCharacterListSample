@@ -38,7 +38,7 @@ Used for downloading and caching remote images caming from json service call.
 
 
 # Unit Testing
-
+Testing has been developed only for MarvelCharactersLists.
 
 <br>
 

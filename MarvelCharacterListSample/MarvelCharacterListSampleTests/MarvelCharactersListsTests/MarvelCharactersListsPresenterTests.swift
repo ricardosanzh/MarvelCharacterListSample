@@ -30,24 +30,24 @@ extension MarvelCharactersListsPresenterTests {
       XCTAssertEqual(viewController.passedId, testId)
     }
     
-//
-//    func testCharactersList() {
-//      XCTAssertNil(viewController.passedList)
-//      if let data = FileManager.default.contents(atPath: R.file.charactersListJson()!.path) {
-//        let decoder = JSONDecoder()
-//        do {
-//          if let dataList = try decoder.decode(CharactersList.self, from: data).data, let testList = dataList.results {
-//            presenter.presentResponse(.prepareCharactersList(data: testList))
-//            XCTAssertEqual(viewController.passedList.items.count, testList.count)
-//          }
-//        } catch {
-//          fatalError(error.localizedDescription)
-//        }
-//      }
-//    }
-    
-}
 
+    func testCharactersList() {
+      XCTAssertNil(viewController.passedList)
+        if let path = Bundle.main.path(forResource: "charactersList", ofType: "json") {
+            if let data = FileManager.default.contents(atPath: path) {
+            let decoder = JSONDecoder()
+            do {
+              if let dataList = try decoder.decode(CharactersList.self, from: data).data, let testList = dataList.results {
+                presenter.presentResponse(.presentCharactersListResponse(testList))
+                XCTAssertEqual(viewController.passedList.items.count, testList.count)
+              }
+            } catch {
+              fatalError(error.localizedDescription)
+            }
+          }
+        }
+    }
+}
 
 
 // MARK: - Spy Classes Setup

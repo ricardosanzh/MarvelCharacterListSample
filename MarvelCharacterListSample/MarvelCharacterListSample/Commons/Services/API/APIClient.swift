@@ -8,15 +8,17 @@
 import Foundation
 import Alamofire
 
-import Foundation
-import Alamofire
+protocol APIClientProtocol {
+    func executeCharacters(page: Int, completion:  @escaping (_ results: CharactersList?, _ errorString:String) -> Void)
+    func getCharacterDetail(id: Int, completion:  @escaping (_ results: ResultList?, _ errorString:String) -> Void)
+}
 
 private struct AccessKeysDictionary {
     let publicKey: String?
     let privateKey: String?
 }
 
-class APIClient {
+final class APIClient {
     private var keys: NSDictionary?
     private var params: Parameters?
     private let ts = NSDate().timeIntervalSince1970.description
@@ -39,8 +41,9 @@ class APIClient {
             return AccessKeysDictionary(publicKey: "", privateKey: "")
         }
     }
-    
-    
+}
+
+extension APIClient: APIClientProtocol {
     /// Read API characters with its own information.
     ///
     /// - Returns: JSON required for filling this section of the app.

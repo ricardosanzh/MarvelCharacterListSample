@@ -23,8 +23,10 @@ final class MarvelCharactersListsRouterTests: XCTestCase {
 
 // MARK: - Tests
 extension MarvelCharactersListsRouterTests {
-
-
+    func testRouter() {
+        let testId = 1011334
+        router.routeTo(.sendIdToDetailsScreen(id: testId))
+    }
 }
 
 
@@ -32,6 +34,8 @@ extension MarvelCharactersListsRouterTests {
 private extension MarvelCharactersListsRouterTests {
 
   final class MarvelCharactersListsViewControllerSpy: UIViewController {
+    var passedId: Int!
+
     var dismissExpectation: XCTestExpectation!
     var isDismissed: Bool = false
 

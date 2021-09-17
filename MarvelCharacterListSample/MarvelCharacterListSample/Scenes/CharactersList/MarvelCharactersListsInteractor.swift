@@ -56,7 +56,7 @@ private extension MarvelCharactersListsInteractor {
         if page == 0 {
             LoaderView.toggleUniversalLoadingView(true)
         }
-        APIClient().executeCharacters(page: page) {
+        factory.makeApiClient().executeCharacters(page: page) {
             (results: CharactersList?, error: String) in
             LoaderView.toggleUniversalLoadingView(false)
             if let resultsReceived = results {
