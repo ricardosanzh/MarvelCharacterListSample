@@ -38,7 +38,9 @@ Used for downloading and caching remote images caming from json service call.
 
 
 # Unit Testing
-Testing has been developed only for MarvelCharactersLists.
+Testing has been developed with some examples, focused mainly on MarvelCharactersLists.
+
+Coverage 61% aprox.
 
 <br>
 
